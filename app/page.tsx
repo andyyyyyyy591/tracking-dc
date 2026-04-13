@@ -66,7 +66,7 @@ export default function Home() {
 
       {/* ── Hero ── */}
       <section
-        className="relative w-full overflow-hidden border-b border-border/60 py-16 sm:py-20"
+        className="relative w-full overflow-hidden border-b border-border/60 py-16 sm:py-20 flex-1"
         style={{
           background: 'linear-gradient(180deg, color-mix(in oklch, var(--primary) 6%, white) 0%, white 100%)',
         }}
