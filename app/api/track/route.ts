@@ -1,11 +1,10 @@
-// app/api/track/route.ts
 import { NextResponse } from "next/server";
-
-const SUPABASE_URL = process.env.SUPABASE_URL!;
-const SUPABASE_SECRET = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
 export async function GET(req: Request) {
   try {
+    const SUPABASE_URL = process.env.SUPABASE_URL!;
+    const SUPABASE_SECRET = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
     const { searchParams } = new URL(req.url);
     const code = (searchParams.get("code") || "").trim();
 
@@ -13,10 +12,7 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: "Missing code" }, { status: 400 });
     }
 
-    // Consulta a Supabase REST
-    const url = `${SUPABASE_URL}/rest/v1/shipments?codigo_seguimiento=eq.${encodeURIComponent(
-      code
-    )}&select=*`;
+    const url = `${SUPABASE_URL}/rest/v1/shipments?codigo_seguimiento=eq.${encodeURIComponent(code)}&select=*`;
 
     const res = await fetch(url, {
       method: "GET",
@@ -29,10 +25,7 @@ export async function GET(req: Request) {
 
     if (!res.ok) {
       const text = await res.text();
-      return NextResponse.json(
-        { error: "Supabase error", detail: text },
-        { status: 500 }
-      );
+      return NextResponse.json({ error: "Supabase error", detail: text }, { status: 500 });
     }
 
     const rows = (await res.json()) as any[];
@@ -41,12 +34,8 @@ export async function GET(req: Request) {
       return NextResponse.json({ found: false }, { status: 200 });
     }
 
-    // Devolvemos el envío encontrado
     return NextResponse.json({ found: true, shipment: rows[0] }, { status: 200 });
   } catch (e: any) {
-    return NextResponse.json(
-      { error: "Server error", detail: String(e?.message || e) },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: "Server error", detail: String(e?.message || e) }, { status: 500 });
   }
 }

@@ -115,8 +115,8 @@ export default function Home() {
       </section>
 
       {/* ── Results ── */}
-      <main className="mx-auto w-full max-w-xl flex-1 px-6 py-10">
-        {shipment ? (
+      {shipment && (
+        <main className="mx-auto w-full max-w-xl flex-1 px-6 py-10">
           <div className="flex flex-col gap-5 animate-fade-up">
             <TrackingStatusCard shipment={shipment} />
 
@@ -124,7 +124,6 @@ export default function Home() {
               className="overflow-hidden rounded-2xl border border-border bg-card"
               style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06)' }}
             >
-              {/* Section header */}
               <div className="flex items-center justify-between border-b border-border/60 px-6 py-4">
                 <p className="text-xs font-bold uppercase tracking-[0.08em] text-muted-foreground">
                   Historial del envío
@@ -145,25 +144,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-        ) : (
-          <div className="flex flex-col items-center gap-5 py-20 text-center">
-            <div
-              className="flex h-20 w-20 items-center justify-center rounded-2xl border-2 border-dashed"
-              style={{ borderColor: 'var(--border)', background: 'var(--muted)' }}
-            >
-              <svg className="h-9 w-9 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-              </svg>
-            </div>
-            <div className="space-y-1.5">
-              <p className="text-base font-bold text-foreground">Buscá tu envío</p>
-              <p className="max-w-xs text-sm text-muted-foreground">
-                Ingresá el código de seguimiento que recibiste para ver el estado de tu pedido.
-              </p>
-            </div>
-          </div>
-        )}
-      </main>
+        </main>
+      )}
 
       {/* ── Footer ── */}
       <footer className="w-full border-t border-border/60 bg-card/60 px-6 py-6">
