@@ -1,20 +1,14 @@
-function must(name: string) {
-  const v = process.env[name];
-  if (!v) throw new Error(`Missing env var: ${name}`);
-  return v;
-}
-
-const SUPABASE_URL = must("SUPABASE_URL");
-const SUPABASE_SECRET = must("SUPABASE_SERVICE_ROLE_KEY");
-
 export async function supabaseInsertShipment(payload: {
   codigo_seguimiento: string;
-  fecha_inicio: string; // YYYY-MM-DD
+  fecha_inicio: string;
   nombre_cliente: string;
   telefono_cliente?: string;
   producto: string;
   modelo: string;
 }) {
+  const SUPABASE_URL = process.env.SUPABASE_URL!;
+  const SUPABASE_SECRET = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+
   const res = await fetch(`${SUPABASE_URL}/rest/v1/shipments`, {
     method: "POST",
     headers: {
