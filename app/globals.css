@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ── Design tokens (Cubamax-inspired teal + professional slate) ── */
+:root {
+  /* Brand — teal (Cubamax style) */
+  --primary:           oklch(0.54 0.13 185);
+  --primary-dark:      oklch(0.44 0.13 185);
+  --primary-foreground: oklch(0.99 0 0);
+
+  /* Status colors */
+  --success:           oklch(0.56 0.17 145);   /* emerald green — completed */
+  --success-light:     oklch(0.96 0.04 145);
+  --warning:           oklch(0.72 0.18 70);    /* amber — out for delivery */
+  --warning-light:     oklch(0.97 0.04 70);
+  --info:              oklch(0.58 0.18 250);   /* blue — in transit */
+  --info-light:        oklch(0.96 0.04 250);
+  --pending:           oklch(0.70 0.01 250);   /* slate-400 — future steps */
+
+  /* Surfaces */
+  --background:        oklch(0.975 0.004 250); /* slate-50 */
+  --card:              oklch(1 0 0);
+  --card-foreground:   oklch(0.13 0.022 260);
+
+  /* Text */
+  --foreground:        oklch(0.13 0.022 260);  /* slate-900 */
+  --muted:             oklch(0.94 0.008 250);  /* slate-100 */
+  --muted-foreground:  oklch(0.52 0.015 255);  /* slate-500 */
+
+  /* UI */
+  --popover:           oklch(1 0 0);
+  --popover-foreground: oklch(0.13 0.022 260);
+  --secondary:         oklch(0.94 0.008 250);
+  --secondary-foreground: oklch(0.25 0.02 260);
+  --accent:            oklch(0.94 0.008 250);
+  --accent-foreground: oklch(0.25 0.02 260);
+  --destructive:       oklch(0.57 0.24 27);
+  --destructive-foreground: oklch(0.57 0.24 27);
+  --border:            oklch(0.90 0.010 255);  /* slate-200 */
+  --input:             oklch(0.90 0.010 255);
+  --ring:              oklch(0.54 0.13 185);
+  --radius:            0.75rem;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Geist', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'Geist Mono', 'JetBrains Mono', monospace;
+
+  --color-background:        var(--background);
+  --color-foreground:        var(--foreground);
+  --color-card:              var(--card);
+  --color-card-foreground:   var(--card-foreground);
+  --color-popover:           var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary:           var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary:         var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:             var(--muted);
+  --color-muted-foreground:  var(--muted-foreground);
+  --color-accent:            var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-success:           var(--success);
+  --color-success-light:     var(--success-light);
+  --color-destructive:       var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border:            var(--border);
+  --color-input:             var(--input);
+  --color-ring:              var(--ring);
+  --radius-sm:  calc(var(--radius) - 4px);
+  --radius-md:  calc(var(--radius) - 2px);
+  --radius-lg:  var(--radius);
+  --radius-xl:  calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground antialiased; }
+}
+
+/* ── Animations ── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1);   opacity: 0.55; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+/* Current step pulse ring */
+.step-pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--primary);
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+/* Card shadow scale */
+.card-shadow {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.06);
+}
+.card-shadow-md {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07), 0 8px 24px rgba(0,0,0,0.07);
+}
