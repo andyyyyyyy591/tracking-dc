@@ -129,7 +129,7 @@ export default function AdminPage() {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyDown={(e) => e.key === "Enter" && login()}
                     placeholder="••••••••••••"
-                    className="h-12 w-full rounded-xl border border-border bg-muted/40 px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-white transition-all"
+                    className="h-12 w-full rounded-xl border border-border bg-muted/40 px-4 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-white transition-all"
                     style={{ '--tw-ring-color': 'var(--primary)' } as React.CSSProperties}
                   />
                 </div>

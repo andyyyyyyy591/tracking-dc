@@ -59,7 +59,7 @@ export function AdminCreateForm({ adminKey }: { adminKey: string }) {
   }
 
   const labelClass = "block text-xs font-bold uppercase tracking-[0.08em] text-muted-foreground mb-2"
-  const inputClass = "h-12 w-full rounded-xl border border-border bg-muted/40 px-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-white transition-all"
+  const inputClass = "h-12 w-full rounded-xl border border-border bg-muted/40 px-4 text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary focus:bg-white transition-all"
 
   /* ── Success screen ── */
   if (generatedCode) {
