@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { PRODUCT_LABELS, daysSince, getCurrentStageIndex, STAGES, type ProductType } from "@/lib/trucking";
+import { PRODUCT_LABELS, daysSince, getCurrentStageIndex, STAGES, resolveProduct } from "@/lib/trucking";
 
 type Row = {
   codigo_seguimiento: string;
@@ -12,11 +12,6 @@ type Row = {
   producto: string | null;
   modelo: string | null;
 };
-
-function resolveProduct(raw: string | null | undefined): ProductType {
-  if (raw === "MOTO" || raw === "TRICICLO" || raw === "KIT_SOLAR") return raw;
-  return "MOTO";
-}
 
 function getStageLabel(row: Row): string {
   const producto = resolveProduct(row.producto);
@@ -213,7 +208,7 @@ export default function AdminPedidosPage() {
 
                 <tbody className="divide-y divide-border/60">
                   {filtered.map((r) => {
-                    const producto = resolveProduct(r.producto);
+                    const producto = resolveProduct(r.producto, r.codigo_seguimiento);
                     const productoLabel = PRODUCT_LABELS[producto];
                     const stageLabel = getStageLabel(r);
 

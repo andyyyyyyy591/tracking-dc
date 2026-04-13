@@ -4,7 +4,7 @@ import {
   STAGES,
   daysSince,
   getCurrentStageIndex,
-  type ProductType,
+  resolveProduct,
 } from "@/lib/trucking"
 
 type Shipment = {
@@ -13,11 +13,6 @@ type Shipment = {
   fecha_inicio: string
   producto?: string | null
   modelo?: string | null
-}
-
-function resolveProduct(raw: string | null | undefined): ProductType {
-  if (raw === "MOTO" || raw === "TRICICLO" || raw === "KIT_SOLAR") return raw
-  return "MOTO"
 }
 
 /* Status badge color per stage key */
@@ -32,7 +27,7 @@ function getStageBadgeStyle(key: string) {
 }
 
 export function TrackingStatusCard({ shipment }: { shipment: Shipment }) {
-  const producto = resolveProduct(shipment.producto)
+  const producto = resolveProduct(shipment.producto, shipment.codigo_seguimiento)
   const productoLabel = PRODUCT_LABELS[producto]
   const days = daysSince(shipment.fecha_inicio)
   const stages = STAGES[producto]

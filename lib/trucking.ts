@@ -179,6 +179,23 @@ export function getCurrentStageIndex(producto: ProductType, days: number): numbe
   return current
 }
 
+export function resolveProduct(
+  producto: string | null | undefined,
+  codigo: string | null | undefined
+): ProductType {
+  // 1. Si tiene el campo producto definido, usarlo
+  if (producto === "MOTO" || producto === "TRICICLO" || producto === "KIT_SOLAR") return producto
+
+  // 2. Detectar por prefijo del código (códigos viejos)
+  const code = (codigo || "").toUpperCase()
+  if (code.startsWith("KIT"))  return "KIT_SOLAR"
+  if (code.startsWith("TRIC")) return "TRICICLO"
+  if (code.startsWith("MOT"))  return "MOTO"
+
+  // 3. Fallback
+  return "MOTO"
+}
+
 export function generateTrackingCode(): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"
   let result = "TDC-"
