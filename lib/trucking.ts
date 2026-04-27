@@ -107,14 +107,14 @@ export const STAGES: Record<ProductType, Stage[]> = {
       label: "Coordinando entrega",
       fromDay: 110,
       description:
-        "El triciclo fue liberado de aduana. Estamos coordinando la logística de entrega a domicilio.",
+        "El triciclo fue liberado de aduana.",
     },
     {
       key: "delivery",
       label: "Listo para entregar",
       fromDay: 120,
       description:
-        "Tu triciclo completó todo el proceso y está listo. Nos comunicaremos para confirmar la entrega.",
+        "Tu triciclo completó todo el proceso y está listo. Nos comunicaremos pronto contigo.",
     },
   ],
 
