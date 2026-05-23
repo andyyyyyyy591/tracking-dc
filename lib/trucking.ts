@@ -129,35 +129,42 @@ export const STAGES: Record<ProductType, Stage[]> = {
     {
       key: "prep",
       label: "Preparación del kit",
-      fromDay: 5,
+      fromDay: 7,
       description:
         "Estamos ensamblando y verificando todos los componentes de tu kit: paneles, inversor, baterías y cableado.",
     },
     {
       key: "ready",
       label: "Listo para despacho",
-      fromDay: 12,
+      fromDay: 17,
       description: "El kit está completo y documentado. Listo para salir.",
     },
     {
       key: "transit",
       label: "En tránsito",
-      fromDay: 15,
+      fromDay: 21,
       description: "Tu pedido está en camino.",
     },
     {
       key: "customs",
       label: "Proceso aduanal",
-      fromDay: 20,
+      fromDay: 28,
       description:
         "Tu pedido llegó a destino y se encuentra en proceso de revisión y despacho aduanal.",
     },
     {
-      key: "delivery",
-      label: "Listo para entregar",
+      key: "released",
+      label: "Coordinando logística",
       fromDay: 50,
       description:
-        "Tu pedido completó el proceso aduanal y está listo. Nos comunicaremos para coordinar la entrega.",
+        "Tu pedido completó el proceso aduanal. Estamos coordinando la logística para la entrega.",
+    },
+    {
+      key: "delivery",
+      label: "Listo para entregar",
+      fromDay: 70,
+      description:
+        "Tu pedido está listo. Nos comunicaremos para coordinar la entrega.",
     },
   ],
 }
